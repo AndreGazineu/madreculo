@@ -1,5 +1,5 @@
 let model, texture, normalMap, textureLoaded = false;
-let uvOffsetU = -0.004, uvOffsetV = 0.0;
+let uvOffsetU = 0.000, uvOffsetV = 0.0;
 let updatedUVs = null;
 
 const dropzone = document.getElementById('dropzone');
@@ -76,7 +76,7 @@ function applyNormalMap(normalMapPath, model) {
         model.traverse((child) => {
             if (child.isMesh) {
                 child.material.normalMap = normalMap;
-				child.material.normalScale = new THREE.Vector2(2, 2);
+                child.material.normalScale = new THREE.Vector2(2, 2);
                 child.material.needsUpdate = true;
             }
         });
@@ -146,7 +146,8 @@ dropzone.addEventListener('drop', (e) => {
         texture.flipY = false;
         textureLoaded = true;
         alert("Textura carregada com sucesso!");
-        renderBtn.disabled = false;
+        renderBtn.classList.add('enabled');
+        renderBtn.classList.remove('disabled');
     };
 
     reader.readAsDataURL(file);
@@ -184,7 +185,7 @@ renderBtn.addEventListener('click', function() {
             if (child.isMesh) {
                 const uvAttribute = child.geometry.attributes.uv;
                 originalUVs = uvAttribute.array.slice();
-                updatedUVs = uvAttribute.array.slice(); 
+                updatedUVs = uvAttribute.array.slice();
             }
         });
 
@@ -225,7 +226,7 @@ resetUVBtn.addEventListener('click', () => {
         offsetX = 0;
         offsetY = 0;
         drawUVMap();
-        updateModelViewer(); 
+        updateModelViewer();
     }
 });
 
@@ -266,7 +267,7 @@ function initUVEditor() {
             offsetY -= deltaY;
             lastMouseX = e.clientX;
             lastMouseY = e.clientY;
-            updateUVs(false); // Não inverte as UVs ao editar
+            updateUVs(false);
             drawUVMap();
         }
     });
@@ -276,7 +277,7 @@ function initUVEditor() {
         const zoomIntensity = 0.0003;
         scale += e.deltaY * -zoomIntensity;
         scale = Math.min(Math.max(0.1, scale), 10);
-        updateUVs(false); // Não inverte as UVs ao editar
+        updateUVs(false);
         drawUVMap();
     });
 }
@@ -295,7 +296,7 @@ function updateUVs(invertV = true) {
                 let v = originalV * scale + offsetY / uvHeight;
 
                 if (invertV) {
-                    v = 1 - v; // Inverte o eixo V apenas ao salvar
+                    v = 1 - v;
                 }
 
                 uvAttribute.array[i * 2] = u;
@@ -350,11 +351,6 @@ function drawUVMap() {
         }
     });
 }
-
-// Função para ajustar o tamanho do UV Editor ao redimensionar a janela
-window.addEventListener('resize', () => {
-    // Opcional: Ajustar o tamanho do UV Editor se necessário
-});
 
 // Fechar o UV Editor ao clicar no overlay
 overlay.addEventListener('click', () => {
