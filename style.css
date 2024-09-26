@@ -1,0 +1,316 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #99dcfb;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  min-width: 500px;
+  height: 500px;
+  position: relative;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.site-title {
+  position: absolute;
+  top: 20px;
+  font-size: 50.4px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+}
+
+.cube {
+  position: relative;
+  width: 200px;
+  transform-style: preserve-3d;
+  transform: rotateX(45deg) rotateY(45deg);
+  animation: rotateCube 10s infinite linear;
+}
+
+.cube div {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #f36464, #c8444f);
+  border: 2px solid #fff;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+.front { transform: translateZ(100px); }
+.back { transform: rotateY(180deg) translateZ(100px); }
+.left { transform: rotateY(-90deg) translateZ(100px); }
+.right { transform: rotateY(90deg) translateZ(100px); }
+.top { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+@keyframes rotateCube {
+  0% { transform: rotateX(45deg) rotateY(45deg); }
+  100% { transform: rotateX(405deg) rotateY(405deg); }
+}
+
+.background-container {
+  position: absolute;
+  width: 500px;
+  height: 400px;
+  top: 0px;
+  left: 0px;
+  background: #99dcfb;
+}
+
+.mountains-container {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 150px;
+  left: 0px;
+  background: transparent;
+}
+
+.mountain-1 {
+  position: absolute;
+  width: 800px;
+  height: 500px;
+  top: 20px;
+  left: 0px;
+  background: rgb(202, 248, 196);
+  clip-path: path("M 0,230 S 153,-41 270,14 S 449,-4 522,84 S 726,-33 800,230");
+  animation: mountain-1 35s linear infinite;
+}
+
+@keyframes mountain-1 {
+  from { left: 800px; }
+  to { left: -800px; }
+}
+
+.mountain-2 {
+  position: absolute;
+  width: 800px;
+  height: 200px;
+  top: 50px;
+  left: -20px;
+  background: rgb(165, 214, 69);
+  clip-path: path("M 0,200 S 31,6 96,23 S 164,-36 242,37 S 314,-13 386,34 S 465,50 800,200");
+  animation: mountain-2 25s linear infinite;
+}
+
+@keyframes mountain-2 {
+  from { left: 600px; }
+  to { left: -800px; }
+}
+
+.mountain-3 {
+  position: absolute;
+  width: 600px;
+  height: 100px;
+  top: 150px;
+  left: -30px;
+  background: rgb(0, 127, 0);
+  clip-path: path("M 0,100 S 101,13 125,58 S 205,22 300,60 S 330,12 408,64 S 454,11 600,100");
+  animation: mountain-3 15s linear infinite;
+}
+
+@keyframes mountain-3 {
+  from { left: 650px; }
+  to { left: -600px; }
+}
+
+.clouds-container {
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  top: 0;
+}
+
+.cloud-1 {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  top: -5px;
+  left: 450px;
+  background: white;
+  opacity: 0.5;
+  border-radius: 20px;
+  animation: cloud-1 20s ease-in infinite;
+}
+
+.cloud-1::before {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 40px;
+  left: 15px;
+  background: white;
+  border-radius: 20px;
+}
+
+@keyframes cloud-1 {
+  from { left: 500px; }
+  to { left: -200px; }
+}
+
+.cloud-2 {
+  position: absolute;
+  width: 140px;
+  height: 30px;
+  top: 120px;
+  left: 0px;
+  background: white;
+  opacity: 0.6;
+  border-radius: 20px;
+  animation: cloud-2 15s ease-out infinite;
+}
+
+.cloud-2::before {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 30px;
+  top: 0px;
+  left: -45px;
+  background: white;
+  border-radius: 20px;
+}
+
+.cloud-2::after {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 40px;
+  left: -15px;
+  background: white;
+  border-radius: 20px;
+}
+
+@keyframes cloud-2 {
+  from { left: 500px; }
+  to { left: -200px; }
+}
+
+.cloud-3 {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 240px;
+  left: 0px;
+  background: white;
+  border-radius: 20px;
+  animation: cloud-3 12s linear infinite;
+}
+
+.cloud-3::before {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 30px;
+  top: 0px;
+  left: 110px;
+  background: white;
+  border-radius: 20px;
+}
+
+@keyframes cloud-3 {
+  from { left: 510px; opacity: 0; }
+  50% { opacity: 0.8; }
+  to { left: -150px; opacity: 0; }
+}
+
+.form-container {
+  position: absolute;
+  top: 150px;
+  width: 300px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"] {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #f36464;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #c8444f;
+}
+
+.footer {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+}
+
+.footer a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #c8444f;
+}
+
+.speed-line {
+  position: absolute;
+  width: 150px;
+  height: 5px;
+  background: linear-gradient(90deg, transparent, #22A7F0);
+  top: 50%;
+  left: 0;
+  animation: moveLine 0.5s infinite linear;
+  display: none;
+}
+
+@keyframes moveLine {
+  from { left: -150px; }
+  to { left: 100%; }
+}
+
+.loading-message {
+  display: none;
+  font-size: 20px;
+  color: #333;
+}
+
+.success-message {
+  display: none;
+  font-size: 20px;
+  color: #333;
+}
